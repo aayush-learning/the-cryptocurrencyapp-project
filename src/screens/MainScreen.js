@@ -3,6 +3,7 @@ import { View,
          Text,
          Image,
          ScrollView,
+         StatusBar,
          StyleSheet,
          Dimensions } from 'react-native';
 import { connect } from 'react-redux';
@@ -71,12 +72,15 @@ class MainScreen extends Component {
 
     _handleGraphChange = (index) => {
 
-        // alert(index);
         this.setState({
             ...this.state,
             selectedIndex: index,
         });
     };
+
+    _pushToGrid = () => this.props.navigation.navigate('CCGrid');
+
+    _refreshData = () => null;
 
     render() {
 
@@ -93,30 +97,45 @@ class MainScreen extends Component {
         return (
             <View style={styles.container}>
 
+                <StatusBar
+                    backgroundColor='transparent'
+                    barStyle='light-content'
+                />
+
                 <Image blurRadius={40} source={{ uri: 'https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&h=350' }} style={styles.backgroundImageStyles} />
             
                 {/* <ScrollView style={{ flex: 1 }}> */}
                     
                 <View style={{ flex: 10,
                                backgroundColor: 'transparent',
-                               paddingTop: 16,
-                               paddingHorizontal: 10 }}>
+                               paddingTop: 25,
+                               paddingHorizontal: 8 }}>
 
                         <View style={{
                                 flex: 2,
                                 flexDirection: 'row',
                                 backgroundColor: 'transparent'
                             }}>
-                            <View style={{ flex: 1, backgroundColor: 'red', alignItems: 'center', justifyContent: 'center' }}>
-                                
-                            </View>
-                            <View style={{ flex: 1, backgroundColor: 'blue' }}>
+                            <View style={{ flex: 1, backgroundColor: 'transparent' }}>
                                 <Icon
+                                    onPress={this._pushToGrid}
+                                    name='grid'
+                                    size={30}
+                                    type='simple-line-icon'
+                                    color='white'
+                                    underlayColor={'transparent'}
+                                    containerStyle={{ marginRight: width * 0.38 }}
+                                />
+                            </View>
+                            <View style={{ flex: 1, backgroundColor: 'transparent' }}>
+                                <Icon
+                                    onPress={this._refreshData}
                                     name='ios-sync'
                                     size={40}
                                     type='ionicon'
                                     color='white'
-                                    style={{ marginLeft: width * 0.5 }}
+                                    underlayColor={'transparent'}
+                                    containerStyle={{ marginLeft: width * 0.38 }}
                                 />
                             </View>
                         </View>           

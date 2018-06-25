@@ -2,6 +2,7 @@ import { Animated, Easing } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 
 import MainScreen from '../screens/MainScreen';
+import CCGrid from '../screens/CCGrid';
 
 const transitionConfig = () => {
 
@@ -37,6 +38,10 @@ const AppNavigator = new createStackNavigator({
     MainScreen: {
 
         screen: MainScreen
+    },
+    CCGrid: {
+
+        screen: CCGrid
     }
 
 }, {
