@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { View,
          Text,
          Image,
-         FlatList,
          Dimensions,
          StatusBar,
          StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 import { SearchBar } from 'react-native-elements';
 import GridView from 'react-native-super-grid';
 
@@ -86,7 +86,6 @@ class CCGrid extends Component {
 
                             return <View style={{
                                         backgroundColor: item.color,
-                                        // opacity: 0.8,
                                         height: height * 0.25,
                                         width: width * 0.44,
                                         padding: 10,
@@ -111,8 +110,6 @@ const styles = StyleSheet.create({
     container: {
 
         flex: 1,
-        // alignItems: 'center',
-        // justifyContent: 'center'
     },
     backgroundImageStyles: {
 
@@ -122,4 +119,20 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CCGrid;
+const mapStateToProps = (state) => {
+
+    return {
+
+        localState: state.asyncData
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+
+    return {
+
+        sampleAction: () => dispatch()
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CCGrid);

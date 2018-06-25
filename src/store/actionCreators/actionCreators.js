@@ -13,18 +13,18 @@ export const fetchApplicationDataHandler = () => {
                .then(data => {
 
                    let bitcoinData = data[0].data.quotes[Object.keys(data[0].data.quotes)[0]];
-                   let lastMonthDataArray = data[1].bpi;
+                   let lastMonthData = data[1].bpi;
                    let topCryptoCurrencyData = data[2].data;
 
                    let lastMonthSortedDataArray = [];
 
-                   Object.keys(lastMonthDataArray).forEach((key, index) => {
+                   Object.keys(lastMonthData).reverse().forEach((key, index) => {
                         
-                        let key_data = lastMonthDataArray[key];
+                        let key_data = lastMonthData[key];
 
                             lastMonthSortedDataArray.push({ 
                                                             x: Math.log10(parseFloat(key_data).toFixed(2)),
-                                                            y: index + 1 
+                                                            y: index 
                                                           });
                     });
 

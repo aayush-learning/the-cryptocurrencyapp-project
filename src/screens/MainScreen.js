@@ -8,17 +8,8 @@ import { View,
          Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
-import {
-    BallIndicator,
-    BarIndicator,
-    DotIndicator,
-    MaterialIndicator,
-    PacmanIndicator,
-    PulseIndicator,
-    SkypeIndicator,
-    UIActivityIndicator,
-    WaveIndicator, } from 'react-native-indicators';
-import { Icon, Avatar, Button } from 'react-native-elements';
+import { DotIndicator } from 'react-native-indicators';
+import { Icon } from 'react-native-elements';
 import { fetchApplicationDataHandler } from '../store/actionCreators/actionCreators';
 import { VictoryLine, VictoryChart, VictoryAxis } from 'victory-native';
 
@@ -29,35 +20,25 @@ class MainScreen extends Component {
     constructor(props) {
 
         super(props);
+        this.state = {
+
+            selectedIndex: 1,
+            renderDays: 7
+        };
         this.props.fetchApplicationData();
-    }
-
-    getBaseLog(x, y) {
-        
-        return Math.log(y) / Math.log(x);
-    }
-
-    state = {
-
-        data: [  
-                    { y: '1' , x: '7502.55' },
-                    { y: '2' , x: '7578.69' },
-                    { y: '3' , x: '7460.69' },
-                    { y: '4' , x: '7334.16' },
-                    { y: '5' , x: '7344.96' },
-                    { y: '6' , x: '7105.67' },
-                    { y: '7' , x: '7460.58' },
-
-                ],
-        selectedIndex: 0
     };
 
     _handleGraphChange = (index) => {
 
-        this.setState({
-            ...this.state,
-            selectedIndex: index,
-        });
+        let renderDays = 2;
+        
+           index === 0 ? renderDays = 2 : (index === 1 ? renderDays = 7 : renderDays = 31);
+
+           this.setState({
+               ...this.state,
+               selectedIndex: index,
+               renderDays
+           });
     };
 
     _pushToGrid = () => this.props.navigation.navigate('CCGrid');
@@ -65,23 +46,18 @@ class MainScreen extends Component {
     _refreshData = () => null;
 
     render() {
-
-        let data = this.state.data.slice();
-        let newData = [];
-        data.forEach(e => {
-
-
-            newData.push({ x: this.getBaseLog(parseFloat(e.x), 10) , y: e.y })
-        });
         
         let { isLoaded } = this.props.localState;
         let content = null;
 
         if(isLoaded) {
 
+            let { bitcoinData, bitcoinHistoryData } = this.props.localState;
+            let { renderDays } = this.state;
+
             content = (
 
-                <ScrollView contentContainerStyle={{ flex: 1 }}>
+                <ScrollView contentContainerStyle={{ flex: 1, marginTop: 4 }}>
 
                     <View style={{
                         flex: 10,
@@ -138,7 +114,7 @@ class MainScreen extends Component {
                             justifyContent: 'center'
                         }}>
 
-                            <Text style={{ color: '#85bb65', fontSize: 44 }}>$6,830.2</Text>
+                            <Text style={{ color: '#85bb65', fontSize: 44 }}>${bitcoinData.price}</Text>
 
                         </View>
 
@@ -162,7 +138,7 @@ class MainScreen extends Component {
                         </View>
                     </View>
 
-                    
+
                     <View style={{ flex: 7, backgroundColor: 'transparent', padding: 10 }}>
 
                         <VictoryChart height={height * 0.42} width={width}>
@@ -172,7 +148,7 @@ class MainScreen extends Component {
                                 style={{
                                     data: { stroke: '#85bb65' },
                                 }}
-                                data={newData}
+                                data={bitcoinHistoryData.slice(0, renderDays)}
                             />
                             <VictoryAxis tickFormat={() => ''} style={{ axis: { stroke: 'none' } }} />
                         </VictoryChart>
@@ -182,23 +158,11 @@ class MainScreen extends Component {
             );
         } else {
 
-            // BallIndicator
-            // BarIndicator
-            // DotIndicator
-            // MaterialIndicator
-            // PacmanIndicator
-            // PulseIndicator
-            // SkypeIndicator
-            // UIActivityIndicator
-            // WaveIndicator
-
-            content = <DotIndicator color='white' size={24} count={4} />
+            content = (
+                        <DotIndicator color='white' size={24} count={4} />
+                      );
 
         }
-
-
-        console.log(isLoaded);
-
 
         return (
             <View style={styles.container}>
@@ -210,11 +174,9 @@ class MainScreen extends Component {
 
                 <Image blurRadius={40} source={{ uri: 'https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&h=350' }} style={styles.backgroundImageStyles} />
             
-                
                 {
                     content
                 }    
-                
                 
             </View>
         );
