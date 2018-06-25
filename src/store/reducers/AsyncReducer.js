@@ -1,5 +1,8 @@
 const initialState = {
 
+    bitcoinData: null,
+    bitcoinHistoryData: [],
+    topCryptoCurrencyData: [],
     fetchSuccess: false,
     fetchError: false,
     isLoaded: false
@@ -9,13 +12,23 @@ const asyncReducer = (state = initialState, action) => {
 
     switch (action.type) {
         
-        case 'SAMPLE::ACTION':
+        case 'APPLICATION_DATA->FETCH::SUCCESS':
 
-            // Sample action for your application.
-            console.log('updating as expected');
             return {
 
-                ...state
+                ...state,
+                bitcoinData: action.bitcoinData,
+                bitcoinHistoryData: action.lastMonthBitcoinData,
+                topCryptoCurrencyData: action.topCryptoCurrencyData,
+                fetchSuccess: true,
+                isLoaded: true
+            };
+        case 'APPLICATION_DATA->FETCH::FAILED':
+
+            return {
+
+                ...state,
+                fetchError: true
             };
 
         default:
