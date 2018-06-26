@@ -5,7 +5,7 @@
 const gridcolors = [
 
     // US palette
-    
+
     'rgb(85, 239, 196)',
     'rgb(129, 236, 236)',
     'rgb(116, 185, 255)',
@@ -20,12 +20,9 @@ const gridcolors = [
     'rgb(250, 177, 160)',
     'rgb(255, 118, 117)',
     'rgb(253, 121, 168)',
-    'rgb(99, 110, 114)',
     'rgb(253, 203, 110)',
     'rgb(225, 112, 85)',
-    'rgb(214, 48, 49)',
     'rgb(232, 67, 147)',
-    'rgb(45, 52, 54)',
 
     // RU Palette
 
@@ -48,7 +45,6 @@ const gridcolors = [
     'rgb(247, 143, 179)',
     'rgb(61, 193, 211)',
     'rgb(230, 103, 103)',
-    'rgb(48, 57, 82)'
 ];
 
 export default gridcolors;

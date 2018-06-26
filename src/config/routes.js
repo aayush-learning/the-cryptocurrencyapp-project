@@ -3,6 +3,7 @@ import { createStackNavigator } from 'react-navigation';
 
 import MainScreen from '../screens/MainScreen';
 import CCGrid from '../screens/CCGrid';
+import CCDataView from '../screens/CCDetailView';
 
 const transitionConfig = () => {
 
@@ -42,6 +43,10 @@ const AppNavigator = new createStackNavigator({
     CCGrid: {
 
         screen: CCGrid
+    },
+    CCDataView: {
+        
+        screen: CCDataView
     }
 
 }, {

@@ -3,10 +3,11 @@ import { View,
          Text,
          Image,
          Dimensions,
+         TouchableOpacity,
          StatusBar,
          StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { SearchBar } from 'react-native-elements';
+import { SearchBar, Badge } from 'react-native-elements';
 import GridView from 'react-native-super-grid';
 
 const { height, width } = Dimensions.get('window');
@@ -20,8 +21,14 @@ class CCGrid extends Component {
 
     handleSearch = (text) => this.setState({ search: text });
 
+    _pushToDetailView = (data) => {
+
+        this.props.navigation.navigate('CCDataView', { ...data } );
+    };
     render() {
-        console.log(this.props.localState);
+
+        let { topCryptoCurrencyData } = this.props.localState;
+
         return (
             <View style={styles.container}>
 
@@ -30,7 +37,9 @@ class CCGrid extends Component {
                     barStyle='light-content'
                 />
 
-                <Image blurRadius={40} source={{ uri: 'https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&h=350' }} style={styles.backgroundImageStyles} />
+                <Image blurRadius={40} 
+                       source={{ uri: 'https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&h=350' }}
+                       style={styles.backgroundImageStyles} />
 
                 <View style={{
                     flex: 1,
@@ -73,28 +82,41 @@ class CCGrid extends Component {
 
                    <GridView
                         itemDimension={130}
-                        items={[{ color: '#e17055', y: '1', x: '7502.55' },
-                            { color: '#ff7675', y: '2', x: '7578.69' },
-                            { color: '#a29bfe', y: '3', x: '7460.69' },
-                            { color: '#74b9ff', y: '4', x: '7334.16' },
-                            { color: '#81ecec', y: '5', x: '7344.96' },
-                            { color: '#6c5ce7', y: '6', x: '7105.67' },
-                            { color: '#55efc4', y: '7', x: '7460.58' }
-                        ]}
-
+                        items={topCryptoCurrencyData}
                         renderItem={ item => {
 
-                            return <View style={{
+                            return <TouchableOpacity 
+                                    onPress={() => this._pushToDetailView(item)}
+                                    style={{
+                                        flex: 1,
                                         backgroundColor: item.color,
                                         height: height * 0.25,
                                         width: width * 0.44,
                                         padding: 10,
                                         marginVertical: 2,
                                         marginHorizontal: 1,
-                                        borderRadius: 4
+                                        borderRadius: 4                                
                                    }}>
-                                    <Text>{item.x}</Text>
-                                   </View>
+                                        {/* <Image style={{ position: 'absolute', height: height * 0.2, width: width * 0.2 }}
+                                               source={{ uri: `https://s2.coinmarketcap.com/static/img/coins/128x128/${item.data.id}.png` }} /> */}
+                                        <Badge
+                                            containerStyle={{ backgroundColor: 'rgba(10,10,10,0.4)',
+                                                              borderRadius: 4,
+                                                              width: width * 0.16 }}
+                                            value={item.data.rank}
+                                            textStyle={{ color: 'white', fontSize: 16 }}
+                                        />
+
+                                        <Badge
+                                            containerStyle={{ backgroundColor: 'rgba(10,10,10,0.4)',
+                                                              borderRadius: 4,
+                                                              marginTop: height * 0.02,
+                                                              height: height * 0.16,
+                                                              width: width * 0.38 }}
+                                            value={item.data.symbol}
+                                            textStyle={{ color: 'white', fontSize: 36 }}
+                                        />
+                                   </TouchableOpacity>
                         }}
                    />
                 

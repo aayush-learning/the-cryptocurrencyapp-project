@@ -32,7 +32,7 @@ export const fetchApplicationDataHandler = () => {
                     data[2].data.forEach(data => {
 
                         topCryptoCurrencyData.push({
-                            data, color: gridcolors[parseInt(Math.floor(Math.random() * 40))] 
+                            data, color: gridcolors[parseInt(Math.floor(Math.random() * gridcolors.length))] 
                         });
                     });
 
