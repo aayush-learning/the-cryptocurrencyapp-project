@@ -103,8 +103,8 @@ class MainScreen extends Component {
                         }}>
 
                             <Image blurRadius={0}
-                                source={{ uri: 'http://pngimg.com/uploads/bitcoin/bitcoin_PNG47.png' }}
-                                style={{ height: 150, width: 150 }} />
+                                   source={{ uri: 'http://pngimg.com/uploads/bitcoin/bitcoin_PNG47.png' }}
+                                   style={{ height: 150, width: 150 }} />
                         </View>
 
                         <View style={{
@@ -114,7 +114,11 @@ class MainScreen extends Component {
                             justifyContent: 'center'
                         }}>
 
-                            <Text style={{ color: '#85bb65', fontSize: 44 }}>${bitcoinData.price}</Text>
+                            <Text style={{ color: '#85bb65', fontSize: 44 }}>
+                                ${bitcoinData.price
+                                             .toString()
+                                             .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                            </Text>
 
                         </View>
 

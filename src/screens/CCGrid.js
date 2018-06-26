@@ -97,8 +97,6 @@ class CCGrid extends Component {
                                         marginHorizontal: 1,
                                         borderRadius: 4                                
                                    }}>
-                                        {/* <Image style={{ position: 'absolute', height: height * 0.2, width: width * 0.2 }}
-                                               source={{ uri: `https://s2.coinmarketcap.com/static/img/coins/128x128/${item.data.id}.png` }} /> */}
                                         <Badge
                                             containerStyle={{ backgroundColor: 'rgba(10,10,10,0.4)',
                                                               borderRadius: 4,
