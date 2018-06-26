@@ -1,8 +1,8 @@
 {
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 15015,
-  "expoServerNgrokUrl": "https://77-smi.karanpratapsingh.the-cryptocurrency-project.exp.direct",
-  "packagerNgrokUrl": "https://packager.77-smi.karanpratapsingh.the-cryptocurrency-project.exp.direct",
-  "ngrokPid": 15031
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }

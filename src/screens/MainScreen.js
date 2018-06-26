@@ -58,7 +58,7 @@ class MainScreen extends Component {
 
         fetchError ? Alert.alert(
             'Network Error',
-            'Cannot connect to the service',
+            'Cannot connect to the service.',
             [
                 { text: 'Retry', onPress: () => this._refreshData(), style: 'cancel' },     
             ], { cancelable: false }
