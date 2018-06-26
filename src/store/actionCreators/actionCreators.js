@@ -44,3 +44,8 @@ export const fetchApplicationDataHandler = () => {
             }).catch(error => dispatch({ type: 'APPLICATION_DATA->FETCH::FAILED', error }));
     }
 };
+
+export const refetchApplicationDataHandler = () => {
+
+    return { type: 'APPLICATION_DATA->RE-FETCH::INITIALIZE' };
+};

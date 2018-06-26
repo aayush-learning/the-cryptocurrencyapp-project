@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import { DotIndicator } from 'react-native-indicators';
 import { Icon } from 'react-native-elements';
-import { fetchApplicationDataHandler } from '../store/actionCreators/actionCreators';
+import { fetchApplicationDataHandler, refetchApplicationDataHandler } from '../store/actionCreators/actionCreators';
 import { parsePrice } from '../util/utils';
 import DynamicGraph from '../components/DynamicGraph';
 
@@ -44,7 +44,11 @@ class MainScreen extends Component {
 
     _pushToGrid = () => this.props.navigation.navigate('CCGrid');
 
-    _refreshData = () => null;
+    _refreshData = () => {
+        
+        this.props.refetchApplicationData()
+        this.props.fetchApplicationData();
+    };
 
     render() {
         
@@ -199,7 +203,8 @@ const mapDispatchToProps = (dispatch) => {
 
     return {
 
-        fetchApplicationData: () => dispatch(fetchApplicationDataHandler())
+        fetchApplicationData: () => dispatch(fetchApplicationDataHandler()),
+        refetchApplicationData: () => dispatch(refetchApplicationDataHandler())
     };
 };
 
