@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import { DotIndicator } from 'react-native-indicators';
 import { Icon } from 'react-native-elements';
-import { fetchApplicationDataHandler } from '../store/actionCreators/actionCreators';
+import { fetchApplicationDataHandler } from '../../store/actionCreators/actionCreators';
 import { VictoryLine, VictoryChart, VictoryAxis } from 'victory-native';
 
 const { height, width } = Dimensions.get('window');

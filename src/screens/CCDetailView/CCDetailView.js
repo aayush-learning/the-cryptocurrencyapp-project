@@ -10,7 +10,6 @@ const { height, width } = Dimensions.get('window');
 
 class CCDataView extends Component {
 
-    
     render() {
         
         let { data, color } = this.props.navigation.state.params;
