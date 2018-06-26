@@ -1,9 +1,9 @@
 import { Animated, Easing } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 
-import MainScreen from '../screens/MainScreen/MainScreen';
-import CCGrid from '../screens/CCGrid/CCGrid';
-import CCDataView from '../screens/CCDetailView/CCDetailView';
+import MainScreen from '../screens/MainScreen';
+import CCGrid from '../screens/CCGrid';
+import CCDataView from '../screens/CCDetailView';
 
 const transitionConfig = () => {
 

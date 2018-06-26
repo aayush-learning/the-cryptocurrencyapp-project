@@ -16,10 +16,10 @@ class CCGrid extends Component {
 
     state = {
 
-        search: ''
+        searchQuery: ''
     };
 
-    handleSearch = (text) => this.setState({ search: text });
+    handleSearch = (text) => this.setState({ searchQuery: text });
 
     _pushToDetailView = (data) => {
 
@@ -28,6 +28,22 @@ class CCGrid extends Component {
     render() {
 
         let { topCryptoCurrencyData } = this.props.localState;
+
+        let { searchQuery } = this.state;
+
+        let filteredTopCryptoCurrencyData = topCryptoCurrencyData.filter((elementData, index) => {
+
+            if(searchQuery === '') return elementData;
+            else if (elementData
+                            .data
+                            .name
+                            .toLowerCase()
+                            .includes(searchQuery
+                            .toLowerCase())) return elementData;
+            
+            
+            
+        });
 
         return (
             <View style={styles.container}>
@@ -49,7 +65,7 @@ class CCGrid extends Component {
                 }}>
                     <SearchBar
                         round
-                        value={this.state.search}
+                        value={this.state.searchQuery}
                         clearIcon={{ color: '#ddd', style: { marginTop: 2.4, fontSize: 18 } }}
                         icon={{ name: 'search', color: '#ddd', style: { marginTop: 2.5, fontSize: 18 } }}
                         platform='ios'
@@ -82,7 +98,7 @@ class CCGrid extends Component {
 
                    <GridView
                         itemDimension={130}
-                        items={topCryptoCurrencyData}
+                        items={filteredTopCryptoCurrencyData}
                         renderItem={ item => {
 
                             return <TouchableOpacity 

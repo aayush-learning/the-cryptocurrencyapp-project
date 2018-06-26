@@ -10,8 +10,9 @@ import { connect } from 'react-redux';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import { DotIndicator } from 'react-native-indicators';
 import { Icon } from 'react-native-elements';
-import { fetchApplicationDataHandler } from '../../store/actionCreators/actionCreators';
-import { VictoryLine, VictoryChart, VictoryAxis } from 'victory-native';
+import { fetchApplicationDataHandler } from '../store/actionCreators/actionCreators';
+import { parsePrice } from '../util/utils';
+import DynamicGraph from '../components/DynamicGraph';
 
 const { height, width } = Dimensions.get('window');
 
@@ -115,9 +116,7 @@ class MainScreen extends Component {
                         }}>
 
                             <Text style={{ color: '#85bb65', fontSize: 44 }}>
-                                ${bitcoinData.price
-                                             .toString()
-                                             .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                                ${parsePrice(bitcoinData.price)}
                             </Text>
 
                         </View>
@@ -142,21 +141,7 @@ class MainScreen extends Component {
                         </View>
                     </View>
 
-
-                    <View style={{ flex: 7, backgroundColor: 'transparent', padding: 10 }}>
-
-                        <VictoryChart height={height * 0.42} width={width}>
-                            <VictoryLine
-
-                                animate
-                                style={{
-                                    data: { stroke: '#85bb65' },
-                                }}
-                                data={bitcoinHistoryData.slice(renderDays)}
-                            />
-                            <VictoryAxis tickFormat={() => ''} style={{ axis: { stroke: 'none' } }} />
-                        </VictoryChart>
-                    </View>
+                    <DynamicGraph bitcoinHistoryData={bitcoinHistoryData} renderDays={renderDays} />
 
                 </ScrollView>
             );
