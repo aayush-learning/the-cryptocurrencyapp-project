@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View,
          Text,
          Image,
+         Alert,
          ScrollView,
          StatusBar,
          StyleSheet,
@@ -52,8 +53,16 @@ class MainScreen extends Component {
 
     render() {
         
-        let { isLoaded } = this.props.localState;
+        let { isLoaded, fetchError } = this.props.localState;
         let content = null;
+
+        fetchError ? Alert.alert(
+            'Network Error',
+            'Cannot connect to the service',
+            [
+                { text: 'Retry', onPress: () => this._refreshData(), style: 'cancel' },     
+            ], { cancelable: false }
+        ) : null;
 
         if(isLoaded) {
 
