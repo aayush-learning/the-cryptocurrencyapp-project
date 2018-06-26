@@ -21,7 +21,7 @@ class CCGrid extends Component {
     handleSearch = (text) => this.setState({ search: text });
 
     render() {
-
+        console.log(this.props.localState);
         return (
             <View style={styles.container}>
 

@@ -1,3 +1,5 @@
+import gridcolors from '../../util/gridcolors';
+
 export const fetchApplicationDataHandler = () => {
 
     return dispatch => {
@@ -14,11 +16,10 @@ export const fetchApplicationDataHandler = () => {
 
                    let bitcoinData = data[0].data.quotes[Object.keys(data[0].data.quotes)[0]];
                    let lastMonthData = data[1].bpi;
-                   let topCryptoCurrencyData = data[2].data;
-
+                   let topCryptoCurrencyData = [];
                    let lastMonthSortedDataArray = [];
 
-                   Object.keys(lastMonthData).reverse().forEach((key, index) => {
+                   Object.keys(lastMonthData).forEach((key, index) => {
                         
                         let key_data = lastMonthData[key];
 
@@ -26,6 +27,13 @@ export const fetchApplicationDataHandler = () => {
                                                             x: Math.log10(parseFloat(key_data).toFixed(2)),
                                                             y: index 
                                                           });
+                    });
+
+                    data[2].data.forEach(data => {
+
+                        topCryptoCurrencyData.push({
+                            data, color: gridcolors[parseInt(Math.floor(Math.random() * 40))] 
+                        });
                     });
 
                    dispatch({ type: 'APPLICATION_DATA->FETCH::SUCCESS',

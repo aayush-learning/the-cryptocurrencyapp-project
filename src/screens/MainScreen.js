@@ -23,16 +23,16 @@ class MainScreen extends Component {
         this.state = {
 
             selectedIndex: 1,
-            renderDays: 7
+            renderDays: -7
         };
         this.props.fetchApplicationData();
     };
 
     _handleGraphChange = (index) => {
 
-        let renderDays = 2;
+        let renderDays = -2;
         
-           index === 0 ? renderDays = 2 : (index === 1 ? renderDays = 7 : renderDays = 31);
+            index === 0 ? renderDays = -2 : (index === 1 ? renderDays = -7 : renderDays = 0);
 
            this.setState({
                ...this.state,
@@ -148,7 +148,7 @@ class MainScreen extends Component {
                                 style={{
                                     data: { stroke: '#85bb65' },
                                 }}
-                                data={bitcoinHistoryData.slice(0, renderDays)}
+                                data={bitcoinHistoryData.slice(renderDays)}
                             />
                             <VictoryAxis tickFormat={() => ''} style={{ axis: { stroke: 'none' } }} />
                         </VictoryChart>
