@@ -14,7 +14,10 @@ import { Icon } from 'react-native-elements';
 import { fetchApplicationDataHandler, refetchApplicationDataHandler } from '../store/actionCreators/actionCreators';
 import { parsePrice } from '../util/utils';
 import DynamicGraph from '../components/DynamicGraph';
+import * as Animatable from 'react-native-animatable';
 import theme from '../config/apptheme';
+
+let AnimatableDotIndicator = Animatable.createAnimatableComponent(DotIndicator);
 const { height, width } = Dimensions.get('window');
 
 class MainScreen extends Component {
@@ -85,7 +88,10 @@ class MainScreen extends Component {
                             flexDirection: 'row',
                             backgroundColor: 'transparent'
                         }}>
-                            <View style={{ flex: 1, backgroundColor: 'transparent' }}>
+                            <Animatable.View
+                             animation='fadeInLeft'
+                             duration={800}
+                             style={{ flex: 1, backgroundColor: 'transparent' }}>
                                 <Icon
                                     onPress={this._pushToGrid}
                                     name='grid'
@@ -95,8 +101,11 @@ class MainScreen extends Component {
                                     underlayColor={'transparent'}
                                     containerStyle={{ marginRight: width * 0.38 }}
                                 />
-                            </View>
-                            <View style={{ flex: 1, backgroundColor: 'transparent' }}>
+                            </Animatable.View>
+                            <Animatable.View
+                             animation='fadeInRight'
+                             duration={800}
+                             style={{ flex: 1, backgroundColor: 'transparent' }}>
                                 <Icon
                                     onPress={this._refreshData}
                                     name='ios-sync'
@@ -106,7 +115,7 @@ class MainScreen extends Component {
                                     underlayColor={'transparent'}
                                     containerStyle={{ marginLeft: width * 0.38 }}
                                 />
-                            </View>
+                            </Animatable.View>
                         </View>
 
                         <View style={{
@@ -116,12 +125,14 @@ class MainScreen extends Component {
                             justifyContent: 'center'
                         }}>
 
-                            <Image blurRadius={0}
+                            <Animatable.Image blurRadius={0} animation='rubberBand' duration={1200}
                                    source={{ uri: 'http://pngimg.com/uploads/bitcoin/bitcoin_PNG47.png' }}
                                    style={{ height: 150, width: 150 }} />
                         </View>
 
-                        <View style={{
+                        <Animatable.View animation='fadeIn'
+                         duration={2000}
+                         style={{
                             flex: 4,
                             backgroundColor: 'transparent',
                             alignItems: 'center',
@@ -132,9 +143,11 @@ class MainScreen extends Component {
                                 ${parsePrice(bitcoinData.price)}
                             </Text>
 
-                        </View>
+                        </Animatable.View>
 
-                        <View style={{
+                        <Animatable.View animation='fadeIn'
+                         duration={2000}
+                         style={{
                             flex: 3,
                             backgroundColor: 'transparent',
                             alignItems: 'center',
@@ -151,7 +164,7 @@ class MainScreen extends Component {
                                 selectedIndex={this.state.selectedIndex}
                                 onTabPress={this._handleGraphChange}
                             />
-                        </View>
+                        </Animatable.View>
                     </View>
 
                     <DynamicGraph bitcoinHistoryData={bitcoinHistoryData} renderDays={renderDays} />
@@ -161,7 +174,7 @@ class MainScreen extends Component {
         } else {
 
             content = (
-                        <DotIndicator color='white' size={24} count={4} />
+                        <AnimatableDotIndicator animation='fadeIn' color='white' size={24} count={4} />
                       );
 
         }

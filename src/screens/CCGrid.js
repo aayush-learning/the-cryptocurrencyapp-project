@@ -8,8 +8,10 @@ import { View,
 import { connect } from 'react-redux';
 import { SearchBar, Badge } from 'react-native-elements';
 import GridView from 'react-native-super-grid';
+import * as Animatable from 'react-native-animatable';
 import theme from '../config/apptheme';
 
+let AnimatableTouchableOpacity = Animatable.createAnimatableComponent(TouchableOpacity);
 const { height, width } = Dimensions.get('window');
 
 class CCGrid extends Component {
@@ -40,9 +42,7 @@ class CCGrid extends Component {
                             .toLowerCase()
                             .includes(searchQuery
                             .toLowerCase())) return elementData;
-            
-            
-            
+
         });
 
         return (
@@ -57,7 +57,7 @@ class CCGrid extends Component {
                        source={theme}
                        style={styles.backgroundImageStyles} />
 
-                <View style={{
+                <Animatable.View animation='fadeInDown' duration={800} style={{
                     flex: 1,
                     backgroundColor: 'rgba(255,255,255,0.1)',
                     paddingTop: 20,
@@ -88,7 +88,7 @@ class CCGrid extends Component {
                             borderWidth: 0
                         }}
                         placeholder='Search...' />
-                </View>
+                </Animatable.View>
 
                 <View style={{
                     flex: 10,
@@ -101,7 +101,9 @@ class CCGrid extends Component {
                         items={filteredTopCryptoCurrencyData}
                         renderItem={ item => {
 
-                            return <TouchableOpacity 
+                            return <AnimatableTouchableOpacity
+                                    animation='fadeIn'
+                                    duration={800}
                                     onPress={() => this._pushToDetailView(item)}
                                     style={{
                                         flex: 1,
@@ -130,7 +132,7 @@ class CCGrid extends Component {
                                             value={item.data.symbol}
                                             textStyle={{ color: 'white', fontSize: 36 }}
                                         />
-                                   </TouchableOpacity>
+                                   </AnimatableTouchableOpacity>
                         }}
                    />
                 

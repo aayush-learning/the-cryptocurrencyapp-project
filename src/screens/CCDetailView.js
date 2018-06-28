@@ -6,6 +6,7 @@ import { View,
          StyleSheet,
          Dimensions } from 'react-native';
 import DetailsViewAnalytics from '../containers/DetailViewAnalytics';
+import * as Animatable from 'react-native-animatable';
 import theme from '../config/apptheme';
 
 const { height, width } = Dimensions.get('window');
@@ -39,11 +40,11 @@ class CCDataView extends Component {
 
                     <DetailsViewAnalytics {...this.props.navigation.state.params} />
 
-                    <View style={{ flex: 6, backgroundColor: 'transparent', padding: 20 }}>
+                    <Animatable.View animation='fadeIn' style={{ flex: 6, backgroundColor: 'transparent', padding: 20 }}>
                         <Image blurRadius={0}
                                source={{ uri: `https://s2.coinmarketcap.com/generated/sparklines/web/7d/usd/${data.id}.png` }}
                                style={{ marginTop: height * 0.036, marginLeft: width * 0.025, height: 100, width: width * 0.840 }} />
-                    </View>
+                    </Animatable.View>
                 
                 </ScrollView>
             </View>
