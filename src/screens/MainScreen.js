@@ -14,7 +14,7 @@ import { Icon } from 'react-native-elements';
 import { fetchApplicationDataHandler, refetchApplicationDataHandler } from '../store/actionCreators/actionCreators';
 import { parsePrice } from '../util/utils';
 import DynamicGraph from '../components/DynamicGraph';
-
+import theme from '../config/apptheme';
 const { height, width } = Dimensions.get('window');
 
 class MainScreen extends Component {
@@ -174,7 +174,7 @@ class MainScreen extends Component {
                     barStyle='light-content'
                 />
 
-                <Image blurRadius={40} source={{ uri: 'https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&h=350' }} style={styles.backgroundImageStyles} />
+                <Image blurRadius={40} source={theme} style={styles.backgroundImageStyles} />
             
                 {
                     content

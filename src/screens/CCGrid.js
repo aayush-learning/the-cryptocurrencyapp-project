@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View,
-         Text,
          Image,
          Dimensions,
          TouchableOpacity,
@@ -9,6 +8,7 @@ import { View,
 import { connect } from 'react-redux';
 import { SearchBar, Badge } from 'react-native-elements';
 import GridView from 'react-native-super-grid';
+import theme from '../config/apptheme';
 
 const { height, width } = Dimensions.get('window');
 
@@ -54,7 +54,7 @@ class CCGrid extends Component {
                 />
 
                 <Image blurRadius={40} 
-                       source={{ uri: 'https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&h=350' }}
+                       source={theme}
                        style={styles.backgroundImageStyles} />
 
                 <View style={{

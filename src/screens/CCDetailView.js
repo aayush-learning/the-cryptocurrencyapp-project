@@ -6,6 +6,7 @@ import { View,
          StyleSheet,
          Dimensions } from 'react-native';
 import DetailsViewAnalytics from '../containers/DetailViewAnalytics';
+import theme from '../config/apptheme';
 
 const { height, width } = Dimensions.get('window');
 
@@ -19,7 +20,7 @@ class CCDataView extends Component {
             <View style={styles.container}>
             
                 <Image blurRadius={40}
-                       source={{ uri: 'https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&h=350' }}
+                       source={theme}
                        style={styles.backgroundImageStyles} />
 
                 <ScrollView contentContainerStyle={{ flex: 1 }}>

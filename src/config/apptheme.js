@@ -1,0 +1,2 @@
+// export default { uri: 'https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&h=350' };
+export default require('../../assets/images/background.jpeg');
