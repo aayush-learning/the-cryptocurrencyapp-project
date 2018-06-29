@@ -5,6 +5,7 @@ import { View,
          Alert,
          ScrollView,
          StatusBar,
+         Platform,
          StyleSheet,
          Dimensions } from 'react-native';
 import { connect } from 'react-redux';
@@ -79,7 +80,7 @@ class MainScreen extends Component {
                     <View style={{
                         flex: 10,
                         backgroundColor: 'transparent',
-                        paddingTop: 25,
+                        paddingTop: Platform.OS === 'android' ? height * 0.05 : height * 0.04,
                         paddingHorizontal: 8
                     }}>
 
@@ -99,7 +100,7 @@ class MainScreen extends Component {
                                     type='simple-line-icon'
                                     color='white'
                                     underlayColor={'transparent'}
-                                    containerStyle={{ marginRight: width * 0.38 }}
+                                    containerStyle={{ marginRight: Platform.OS === 'android' ? width * 0.34 : width * 0.36 }}
                                 />
                             </Animatable.View>
                             <Animatable.View
@@ -113,7 +114,7 @@ class MainScreen extends Component {
                                     type='ionicon'
                                     color='white'
                                     underlayColor={'transparent'}
-                                    containerStyle={{ marginLeft: width * 0.38 }}
+                                    containerStyle={{ marginLeft: Platform.OS === 'android' ? width * 0.34 : width * 0.36 }}
                                 />
                             </Animatable.View>
                         </View>
@@ -155,11 +156,11 @@ class MainScreen extends Component {
                         }}>
                             <SegmentedControlTab
                                 borderRadius={20}
-                                tabsContainerStyle={{ height: height * 0.054, backgroundColor: 'transparent', borderRadius: 20 }}
+                                tabsContainerStyle={{ height: Platform.OS === 'android' ? height * 0.060 : height * 0.054, backgroundColor: 'transparent', borderRadius: 20 }}
                                 tabStyle={{ backgroundColor: 'rgba(10,10,10,0.4)', borderColor: 'transparent' }}
                                 activeTabStyle={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
-                                tabTextStyle={{ color: 'white', fontSize: 18 }}
-                                activeTabTextStyle={{ color: 'white', fontSize: 18 }}
+                                tabTextStyle={{ color: 'white', fontSize: Platform.OS === 'android' ? 16 : 18 }}
+                                activeTabTextStyle={{ color: 'white', fontSize: Platform.OS === 'android' ? 16 : 18 }}
                                 values={['Day', 'Week', 'Month']}
                                 selectedIndex={this.state.selectedIndex}
                                 onTabPress={this._handleGraphChange}

@@ -4,6 +4,7 @@ import { View,
          Dimensions,
          TouchableOpacity,
          StatusBar,
+         Platform,
          StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { SearchBar, Badge } from 'react-native-elements';
@@ -60,14 +61,15 @@ class CCGrid extends Component {
                 <Animatable.View animation='fadeInDown' duration={800} style={{
                     flex: 1,
                     backgroundColor: 'rgba(255,255,255,0.1)',
-                    paddingTop: 20,
-                    paddingHorizontal: 8
+                    paddingTop: Platform.OS === 'android' ? height * 0.064 : height * 0.032,
+                    paddingHorizontal: 8,
+                    paddingBottom: Platform.OS === 'android' ? height * 0.02 : 0
                 }}>
                     <SearchBar
                         round
                         value={this.state.searchQuery}
-                        clearIcon={{ color: '#ddd', style: { marginTop: 2.4, fontSize: 18 } }}
-                        icon={{ name: 'search', color: '#ddd', style: { marginTop: 2.5, fontSize: 18 } }}
+                        clearIcon={{ color: '#ddd', style: { marginTop: Platform.OS === 'android' ? -height * 0.004 : height * 0.0025, fontSize: 18 } }}
+                        icon={{ name: 'search', color: '#ddd', style: { marginTop: Platform.OS === 'android' ? -height * 0.004 : height * 0.0025, fontSize: 18 } }}
                         platform='ios'
                         cancelButtonTitle='Cancel'
                         searchIcon
@@ -85,7 +87,7 @@ class CCGrid extends Component {
                             backgroundColor: 'transparent',
                             borderTopColor: 'transparent',
                             borderBottomColor: 'transparent',
-                            borderWidth: 0
+                            borderWidth: 0  
                         }}
                         placeholder='Search...' />
                 </Animatable.View>
@@ -108,7 +110,7 @@ class CCGrid extends Component {
                                     style={{
                                         flex: 1,
                                         backgroundColor: item.color,
-                                        height: height * 0.25,
+                                        height: Platform.OS === 'android' ? height * 0.2625 : height * 0.25,
                                         width: width * 0.44,
                                         padding: 10,
                                         marginVertical: 2,
