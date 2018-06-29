@@ -153,7 +153,7 @@ class CCGrid extends Component {
                                                                     height: height * 0.16,
                                                                     width: width * 0.38 }}
                                                     value={item.data.symbol}
-                                                    textStyle={{ color: 'white', fontSize: 36, fontFamily: 'Nunito' }}
+                                                    textStyle={{ color: 'white', fontSize: 32, fontFamily: 'Nunito' }}
                                                 />
                                         </AnimatableTouchableOpacity>
                                 }}
