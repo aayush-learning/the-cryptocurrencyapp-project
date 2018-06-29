@@ -47,7 +47,7 @@ class DetailViewAnalytics extends Component {
                                         alignItems: 'center',
                                         justifyContent: 'center' }}>
 
-                                <Text style={{ color: '#85bb65', fontSize: Platform.OS === 'android' ? 36 : 40 }}>
+                                <Text style={{ color: '#85bb65', fontSize: Platform.OS === 'android' ? 36 : 40, fontFamily: 'Nunito' }}>
                                     ${parsePrice(currencyData.price.toFixed(3))}
                                 </Text>
 
@@ -55,22 +55,21 @@ class DetailViewAnalytics extends Component {
                     ): null
                 }
                 
-                
                 {
                     this.state.isFontLoaded ? (
 
-                          <View style={{ flex: 2, flexDirection: 'row', backgroundColor: 'transparent', padding: 4 }}>
+                          <View style={{ flex: 2, flexDirection: 'row', backgroundColor: 'transparent', padding: 0 }}>
 
                             <View style={{ flex: 1, backgroundColor: 'transparent', padding: 8, alignItems: 'center', justifyContent: 'center' }}>
-                                <Text style={{ color: this._resolveAnalyticsColor(currencyData.percent_change_1h), fontSize: Platform.OS === 'android' ? 22 : 24 }}> 1hr </Text>
+                                <Text style={{ color: this._resolveAnalyticsColor(currencyData.percent_change_1h), fontSize: Platform.OS === 'android' ? 22 : 24, fontFamily: 'Nunito' }}> 1hr </Text>
                             </View>
 
                             <View style={{ flex: 1, backgroundColor: 'transparent', padding: 8, alignItems: 'center', justifyContent: 'center' }}>
-                                <Text style={{ color: this._resolveAnalyticsColor(currencyData.percent_change_24h), fontSize: Platform.OS === 'android' ? 22 : 24 }}> 24hr </Text>
+                                <Text style={{ color: this._resolveAnalyticsColor(currencyData.percent_change_24h), fontSize: Platform.OS === 'android' ? 22 : 24, fontFamily: 'Nunito' }}> 24hr </Text>
                             </View>
 
                             <View style={{ flex: 1, backgroundColor: 'transparent', padding: 8, alignItems: 'center', justifyContent: 'center' }}>
-                                <Text style={{ color: this._resolveAnalyticsColor(currencyData.percent_change_7d), fontSize: Platform.OS === 'android' ? 22 : 24 }}> 7d </Text>
+                                <Text style={{ color: this._resolveAnalyticsColor(currencyData.percent_change_7d), fontSize: Platform.OS === 'android' ? 22 : 24, fontFamily: 'Nunito' }}> 7d </Text>
                             </View>
 
                         </View>
@@ -83,20 +82,19 @@ class DetailViewAnalytics extends Component {
                         <View style={{ flex: 2, flexDirection: 'row', backgroundColor: 'transparent', padding: 4 }}>
 
                             <View style={{ flex: 1, backgroundColor: 'transparent', padding: 8, alignItems: 'center', justifyContent: 'center' }}>
-                                <Text style={{ color: this._resolveAnalyticsColor(currencyData.percent_change_1h), fontSize: Platform.OS === 'android' ? 18 : 20 }}>
+                                <Text style={{ color: this._resolveAnalyticsColor(currencyData.percent_change_1h), fontSize: Platform.OS === 'android' ? 18 : 20, fontFamily: 'Nunito' }}>
                                     {currencyData.percent_change_1h}%
                                 </Text>
                             </View>
 
                             <View style={{ flex: 1, backgroundColor: 'transparent', padding: 8, alignItems: 'center', justifyContent: 'center' }}>
-                                <Text style={{ color: this._resolveAnalyticsColor(currencyData.percent_change_24h), fontSize: Platform.OS === 'android' ? 18 : 20 }}>
+                                <Text style={{ color: this._resolveAnalyticsColor(currencyData.percent_change_24h), fontSize: Platform.OS === 'android' ? 18 : 20, fontFamily: 'Nunito' }}>
                                     {currencyData.percent_change_24h}%
                                 </Text>
                             </View>
 
                             <View style={{ flex: 1, backgroundColor: 'transparent', padding: 8, alignItems: 'center', justifyContent: 'center' }}>
-
-                                <Text style={{ color: this._resolveAnalyticsColor(currencyData.percent_change_7d), fontSize: Platform.OS === 'android' ? 18 : 20 }}>
+                                <Text style={{ color: this._resolveAnalyticsColor(currencyData.percent_change_7d), fontSize: Platform.OS === 'android' ? 18 : 20, fontFamily: 'Nunito' }}>
                                     {currencyData.percent_change_7d}%
                                 </Text>
                             </View>
@@ -111,7 +109,7 @@ class DetailViewAnalytics extends Component {
 
                         <View style={{ flex: 2, backgroundColor: 'transparent', alignItems: 'center', justifyContent: 'center', padding: 4, paddingLeft: 12 }}>
 
-                            <Text style={{ color: color, fontSize: Platform.OS === 'android' ? 22 : 24 }}>
+                            <Text style={{ color: color, fontSize: Platform.OS === 'android' ? 22 : 24, fontFamily: 'Nunito' }}>
                                 {parsePrice(data.circulating_supply)} {data.symbol}
                             </Text>
 

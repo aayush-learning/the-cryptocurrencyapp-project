@@ -45,7 +45,7 @@ class CCDataView extends Component {
                     <ScrollView contentContainerStyle={{ flex: 1 }}>
 
                         <View style={{ flex: 10, backgroundColor: 'transparent', alignItems: 'center', justifyContent: 'center' }}>
-                            <Image blurRadius={0}
+                            <Animatable.Image animation='fadeIn' duration={1200} blurRadius={0}
                                 source = {{ uri: `https://s2.coinmarketcap.com/static/img/coins/128x128/${data.id}.png` }}
                                 style={{ marginTop: height * 0.02, height: Platform.OS === 'android' ? 120 : 160, width: Platform.OS === 'android' ? 120 : 160 }} />                          
                         </View>
