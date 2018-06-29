@@ -8,6 +8,7 @@ import { View,
          Platform,
          StyleSheet,
          Dimensions } from 'react-native';
+import { Font } from 'expo';
 import { connect } from 'react-redux';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import { DotIndicator } from 'react-native-indicators';
@@ -29,9 +30,19 @@ class MainScreen extends Component {
         this.state = {
 
             selectedIndex: 1,
-            renderDays: -7
+            renderDays: -7,
+            isFontLoaded: false
         };
         this.props.fetchApplicationData();
+    };
+
+    componentDidMount = async () => {
+
+        await Font.loadAsync({
+
+            'Nunito': require('../../assets/fonts/Nunito-Regular.ttf'),
+        });
+        this.setState({ isFontLoaded: true });
     };
 
     _handleGraphChange = (index) => {
@@ -40,11 +51,11 @@ class MainScreen extends Component {
         
             index === 0 ? renderDays = -4 : (index === 1 ? renderDays = -7 : renderDays = 0);
 
-           this.setState({
-               ...this.state,
-               selectedIndex: index,
-               renderDays
-           });
+            this.setState({
+                ...this.state,
+                selectedIndex: index,
+                renderDays
+            });
     };
 
     _pushToGrid = () => this.props.navigation.navigate('CCGrid');
@@ -68,7 +79,7 @@ class MainScreen extends Component {
             ], { cancelable: false }
         ) : null;
 
-        if(isLoaded) {
+        if(isLoaded && this.state.isFontLoaded) {
 
             let { bitcoinData, bitcoinHistoryData } = this.props.localState;
             let { renderDays } = this.state;
@@ -140,7 +151,7 @@ class MainScreen extends Component {
                             justifyContent: 'center'
                         }}>
 
-                            <Text style={{ color: '#85bb65', fontSize: 44 }}>
+                            <Text style={{ color: '#85bb65', fontSize: 44, fontFamily: 'Nunito' }}>
                                 ${parsePrice(bitcoinData.price)}
                             </Text>
 
@@ -159,8 +170,8 @@ class MainScreen extends Component {
                                 tabsContainerStyle={{ height: Platform.OS === 'android' ? height * 0.060 : height * 0.054, backgroundColor: 'transparent', borderRadius: 20 }}
                                 tabStyle={{ backgroundColor: 'rgba(10,10,10,0.4)', borderColor: 'transparent' }}
                                 activeTabStyle={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
-                                tabTextStyle={{ color: 'white', fontSize: Platform.OS === 'android' ? 16 : 18 }}
-                                activeTabTextStyle={{ color: 'white', fontSize: Platform.OS === 'android' ? 16 : 18 }}
+                                tabTextStyle={{ color: 'white', fontSize: Platform.OS === 'android' ? 16 : 18, fontFamily: 'Nunito' }}
+                                activeTabTextStyle={{ color: 'white', fontSize: Platform.OS === 'android' ? 16 : 18, fontFamily: 'Nunito' }}
                                 values={['Day', 'Week', 'Month']}
                                 selectedIndex={this.state.selectedIndex}
                                 onTabPress={this._handleGraphChange}

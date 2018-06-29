@@ -6,6 +6,7 @@ import { View,
          StatusBar,
          Platform,
          StyleSheet } from 'react-native';
+import { Font } from 'expo';
 import { connect } from 'react-redux';
 import { SearchBar, Badge } from 'react-native-elements';
 import GridView from 'react-native-super-grid';
@@ -19,7 +20,17 @@ class CCGrid extends Component {
 
     state = {
 
-        searchQuery: ''
+        searchQuery: '',
+        isFontLoaded: false
+    };
+
+    componentDidMount = async () => {
+
+        await Font.loadAsync({
+
+            'Nunito': require('../../assets/fonts/Nunito-Regular.ttf'),
+        });
+        this.setState({ isFontLoaded: true });
     };
 
     handleSearch = (text) => this.setState({ searchQuery: text });
@@ -58,7 +69,10 @@ class CCGrid extends Component {
                        source={theme}
                        style={styles.backgroundImageStyles} />
 
-                <Animatable.View animation='fadeInDown' duration={800} style={{
+            {
+              this.state.isFontLoaded ?  (
+              
+              <Animatable.View animation='fadeInDown' duration={800} style={{
                     flex: 1,
                     backgroundColor: 'rgba(255,255,255,0.1)',
                     paddingTop: Platform.OS === 'android' ? height * 0.064 : height * 0.032,
@@ -79,6 +93,7 @@ class CCGrid extends Component {
                             color: '#ddd',
                             height: 36,
                             alignItems: 'center',
+                            fontFamily: 'Nunito',
                             justifyContent: 'center',
                             backgroundColor: 'rgba(10, 10, 10, 0.2)'
                         }}
@@ -91,54 +106,64 @@ class CCGrid extends Component {
                         }}
                         placeholder='Search...' />
                 </Animatable.View>
+                ) : null 
 
-                <View style={{
-                    flex: 10,
-                    backgroundColor: 'transparent',
-                    paddingHorizontal: 0
-                }}>
-
-                   <GridView
-                        itemDimension={130}
-                        items={filteredTopCryptoCurrencyData}
-                        renderItem={ item => {
-
-                            return <AnimatableTouchableOpacity
-                                    animation='fadeIn'
-                                    duration={800}
-                                    onPress={() => this._pushToDetailView(item)}
-                                    style={{
-                                        flex: 1,
-                                        backgroundColor: item.color,
-                                        height: Platform.OS === 'android' ? height * 0.2625 : height * 0.25,
-                                        width: width * 0.44,
-                                        padding: 10,
-                                        marginVertical: 2,
-                                        marginHorizontal: 1,
-                                        borderRadius: 4                                
-                                   }}>
-                                        <Badge
-                                            containerStyle={{ backgroundColor: 'rgba(10,10,10,0.4)',
-                                                              borderRadius: 4,
-                                                              width: width * 0.16 }}
-                                            value={item.data.rank}
-                                            textStyle={{ color: 'white', fontSize: 16 }}
-                                        />
-
-                                        <Badge
-                                            containerStyle={{ backgroundColor: 'rgba(10,10,10,0.4)',
-                                                              borderRadius: 4,
-                                                              marginTop: height * 0.02,
-                                                              height: height * 0.16,
-                                                              width: width * 0.38 }}
-                                            value={item.data.symbol}
-                                            textStyle={{ color: 'white', fontSize: 36 }}
-                                        />
-                                   </AnimatableTouchableOpacity>
-                        }}
-                   />
+                } 
                 
-                </View>
+                {
+                    this.state.isFontLoaded ? (
+
+                        <View style={{
+                            flex: 10,
+                            backgroundColor: 'transparent',
+                            paddingHorizontal: 0
+                        }}>
+
+                        <GridView
+                                itemDimension={130}
+                                items={filteredTopCryptoCurrencyData}
+                                renderItem={ item => {
+
+                                    return <AnimatableTouchableOpacity
+                                            animation='fadeIn'
+                                            duration={800}
+                                            onPress={() => this._pushToDetailView(item)}
+                                            style={{
+                                                flex: 1,
+                                                backgroundColor: item.color,
+                                                height: Platform.OS === 'android' ? height * 0.2625 : height * 0.25,
+                                                width: width * 0.44,
+                                                padding: 10,
+                                                marginVertical: 2,
+                                                marginHorizontal: 1,
+                                                borderRadius: 4                                
+                                        }}>
+                                                <Badge
+                                                    containerStyle={{ backgroundColor: 'rgba(10,10,10,0.4)',
+                                                                    borderRadius: 4,
+                                                                    width: width * 0.16 }}
+                                                    value={item.data.rank}
+                                                    textStyle={{ color: 'white', fontSize: 16, fontFamily: 'Nunito' }}
+                                                />
+
+                                                <Badge
+                                                    containerStyle={{ backgroundColor: 'rgba(10,10,10,0.4)',
+                                                                    borderRadius: 4,
+                                                                    marginTop: height * 0.02,
+                                                                    height: height * 0.16,
+                                                                    width: width * 0.38 }}
+                                                    value={item.data.symbol}
+                                                    textStyle={{ color: 'white', fontSize: 36, fontFamily: 'Nunito' }}
+                                                />
+                                        </AnimatableTouchableOpacity>
+                                }}
+                        />
+                        
+                        </View>
+
+                    ) : null
+                }
+                
 
             </View>
         );
