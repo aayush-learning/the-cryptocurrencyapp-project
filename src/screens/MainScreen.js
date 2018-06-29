@@ -35,9 +35,9 @@ class MainScreen extends Component {
 
     _handleGraphChange = (index) => {
 
-        let renderDays = -2;
+        let renderDays = -4;
         
-            index === 0 ? renderDays = -2 : (index === 1 ? renderDays = -7 : renderDays = 0);
+            index === 0 ? renderDays = -4 : (index === 1 ? renderDays = -7 : renderDays = 0);
 
            this.setState({
                ...this.state,
