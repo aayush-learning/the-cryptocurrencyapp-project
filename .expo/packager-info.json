@@ -1,9 +1,9 @@
 {
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 607,
   "expoServerNgrokUrl": "https://ep-etu.karanpratapsingh.the-cryptocurrency-project.exp.direct",
   "packagerNgrokUrl": "https://packager.ep-etu.karanpratapsingh.the-cryptocurrency-project.exp.direct",
-  "ngrokPid": 8455,
+  "ngrokPid": 625,
   "devToolsPort": 19002
 }

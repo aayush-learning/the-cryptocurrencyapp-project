@@ -28,7 +28,8 @@ const asyncReducer = (state = initialState, action) => {
             return {
 
                 ...state,
-                fetchError: true
+                fetchError: true,
+                error: action.error
             };
         case 'APPLICATION_DATA->RE-FETCH::INITIALIZE': 
             
