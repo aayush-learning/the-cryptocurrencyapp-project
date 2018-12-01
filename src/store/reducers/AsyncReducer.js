@@ -37,7 +37,7 @@ const asyncReducer = (state = initialState, action) => {
 
                 ...initialState
             };
-            
+        
         default:
             return state;
     }
