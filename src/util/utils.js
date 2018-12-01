@@ -1,4 +1,4 @@
 export const parsePrice = (price) => {
 
-    return parseFloat(price).toFixed(4).toString();
+    return parseFloat(price).toFixed(2).toString();
 };

@@ -24,7 +24,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.cryptox.app"
+    },
+    "android": {
+      "package": "com.cryptox.app"
     },
     "githubUrl": "https://github.com/karanpratapsingh/the-cryptocurrency-project"
   }
