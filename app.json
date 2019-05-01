@@ -28,7 +28,9 @@
       "bundleIdentifier": "com.cryptox.app"
     },
     "android": {
-      "package": "com.cryptox.app"
+      "package": "com.cryptox.app",
+      "permissions": [],
+      "versionCode": 4
     },
     "githubUrl": "https://github.com/karanpratapsingh/the-cryptocurrency-project"
   }
